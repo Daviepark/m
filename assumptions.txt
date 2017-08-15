@@ -1,0 +1,6 @@
+I have broken up the calculation functions as I would assume they could be used independently and often.
+
+I have assumed that the superannuation % must be a whole number.
+
+
+
