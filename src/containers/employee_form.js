@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { calculateEmployee } from "../actions/index";
+import { validate } from "../utils/form_validation"
 
 class EmployeeForm extends Component {
 	
-	renderField (field) {
-		// const { meta: { touched, error } } = field;
-		const touched = field.meta.touched;
-		const error = field.meta.error;
-		
+	renderInputField (field) {
+		const { meta: { touched, error } } = field;
 		const className = `form-group ${touched && error ? 'has-danger' : ''}`;
 		
 		return(
 			<div className={className}>
 				<label>{field.label}</label>
+				
 				<input
 					className="form-control"
 					type={field.fieldType}
@@ -27,9 +26,26 @@ class EmployeeForm extends Component {
 		)
 	}
 	
+	renderSelectField (field) {
+		const { meta: { touched, error }, children } = field;
+		const className = `form-group ${touched && error ? 'has-danger' : ''}`;
+		
+		return(
+			<div className={className}>
+				<label>{field.label}</label>
+				<select className="form-control" {...field.input}>
+					{children}
+				</select>
+				<div className="text-help">
+					{ touched ? error : ''}
+				</div>
+			</div>
+		)
+	}
+	
 	onSubmit (values) {
 		this.props.calculateEmployee(values, () => {
-			console.log("fdsd");
+			this.props.history.push("/employee-display");
 		})
 	}
 	
@@ -43,62 +59,47 @@ class EmployeeForm extends Component {
 					label="FirstName"
 					fieldType="text"
 					name="firstName"
-					component={this.renderField}
+					component={this.renderInputField}
 				/>
 				<Field
 					label="LastName"
 					fieldType="text"
 					name="lastName"
-					component={this.renderField}
+					component={this.renderInputField}
 				/>
 				<Field
 					label="Annual Salary"
 					fieldType="text"
 					name="salary"
-					component={this.renderField}
+					component={this.renderInputField}
 				/>
 				<Field
 					label="Super Percentage"
 					fieldType="text"
-					name="super"
-					component={this.renderField}
+					name="superAnnuation"
+					component={this.renderInputField}
 				/>
+				<Field name="month" component={this.renderSelectField} label="Select Month">
+					<option></option>
+					<option name="January">January</option>
+					<option name="February">February</option>
+					<option name="March">March</option>
+					<option name="April">April</option>
+					<option name="May">May</option>
+					<option name="June">June</option>
+					<option name="July">July</option>
+					<option name="August">August</option>
+					<option name="September">September</option>
+					<option name="October">October</option>
+					<option name="November">November</option>
+					<option name="December">December</option>
+				</Field>
+			
 				<button type="submit" className="btn btn-primary">Submit</button>
 			</form>
 		)
 	}
-	
-	
 };
-
-
-function validate (values) {
-	
-	const errors = {};
-	
-	if (!values.firstName) {
-		errors.firstName = "Please enter a First Name";
-	}
-	
-	if (!values.lastName) {
-		errors.lastName = "Please enter a Last Name";
-	}
-	
-	
-	if (!values.salary) {
-		errors.salary = "Please enter annual salary.";
-	} else if (isNaN(values.salary)){
-		errors.salary = "Salary must be a number.";
-	} else if (values.salary < 0.01) {
-		errors.salary = "Salary must be a positive number.";
-	}
-	
-	
-	return errors;
-}
-
-
-
 
 export default reduxForm({
 	validate,

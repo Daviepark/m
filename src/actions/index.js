@@ -1,10 +1,9 @@
 import { calculateTax,
 	calculateNettIncome,
-	calculateGrossIncome
+	calculateGrossIncome,
+	calculateSuper
 } from "../utils/calc_fuctions";
 export const CALCULATE_EMPLOYEE = 'calculate_employee';
-
-
 
 export function calculateEmployee(values, callback) {
 	
@@ -18,19 +17,16 @@ export function calculateEmployee(values, callback) {
 	}
 }
 
-
-
-
 function completeEmployee( values ) {
-	const am = 60050;
+	const { firstName, lastName, salary, superAnnuation, month } = values;
 	
-	const em = {
-		tax: calculateTax(am),
-		gross: calculateGrossIncome(am),
-		nett: calculateNettIncome(am)
+	return {
+		firstName,
+		lastName,
+		tax: calculateTax(salary),
+		gross: calculateGrossIncome(salary),
+		nett: calculateNettIncome(salary),
+		superAnnuation: calculateSuper(salary, superAnnuation),
+		month
 	}
-	
-	
-	console.log(em);
-	
 }

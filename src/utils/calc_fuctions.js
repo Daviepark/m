@@ -19,5 +19,7 @@ export function calculateNettIncome (annual) {
 }
 
 export function calculateSuper (annual, superPercenatge) {
-	return Math.round(calculateNettIncome(annual) * superPercenatge);
+	return Math.round(
+		calculateGrossIncome(annual) * (superPercenatge / 100)
+	);
 }
