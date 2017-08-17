@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { calculateEmployee } from "../actions/index";
 import { validate } from "../utils/form_validation"
+import styles from '../../style/containers/employee_form.css'
 
 class EmployeeForm extends Component {
 	
@@ -54,7 +55,9 @@ class EmployeeForm extends Component {
 		const { handleSubmit } = this.props;
 		
 		return(
-			<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+			<form className={styles.form}
+			      onSubmit={handleSubmit(this.onSubmit.bind(this))}
+			>
 				<Field
 					label="FirstName"
 					fieldType="text"
