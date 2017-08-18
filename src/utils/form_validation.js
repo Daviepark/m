@@ -22,8 +22,8 @@ export function validate (values) {
 		errors.superAnnuation = "Please enter percentage of Superannuation"
 	} else if (isNaN(values.salary)){
 		errors.salary = "Super amount must be a number.";
-	} else if (!Number.isInteger(values.superAnnuation)) {
-		errors.superAnnuation = "Please enter whole number only."
+	// } else if (!Number.isInteger(values.superAnnuation)) {
+	// 	errors.superAnnuation = "Please enter whole number only."
 	} else if (values.superAnnuation > 50 || values.superAnnuation < 0) {
 		errors.superAnnuation = "Super must be between 0% and 50%."
 	}

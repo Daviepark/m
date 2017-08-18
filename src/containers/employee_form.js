@@ -59,13 +59,13 @@ class EmployeeForm extends Component {
 			      onSubmit={handleSubmit(this.onSubmit.bind(this))}
 			>
 				<Field
-					label="FirstName"
+					label="First Name"
 					fieldType="text"
 					name="firstName"
 					component={this.renderInputField}
 				/>
 				<Field
-					label="LastName"
+					label="Last Name"
 					fieldType="text"
 					name="lastName"
 					component={this.renderInputField}
@@ -77,7 +77,7 @@ class EmployeeForm extends Component {
 					component={this.renderInputField}
 				/>
 				<Field
-					label="Super Percentage"
+					label="Super Percentage (0 to 50)"
 					fieldType="text"
 					name="superAnnuation"
 					component={this.renderInputField}

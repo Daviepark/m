@@ -2,5 +2,16 @@ I have broken up the calculation functions as I would assume they could be used 
 
 I have assumed that the superannuation % must be a whole number.
 
+I have assumed styling is not the main objective of this test.
+
+
+TO RUN -
+1. npm install
+2. npm start
+3. visit local host 8080
+
+TO TEST
+1. npm run test:watch
+
 
 

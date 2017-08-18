@@ -33,4 +33,10 @@ $.fn.simulate = function(eventName, value) {
   TestUtils.Simulate[eventName](this[0]);
 };
 
+function nostyle () {
+  return null;
+}
+
+require.extensions['.css'] = nostyle;
+
 export {renderComponent, expect};
