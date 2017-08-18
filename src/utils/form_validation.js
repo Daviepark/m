@@ -17,13 +17,15 @@ export function validate (values) {
 	} else if (values.salary < 0.01) {
 		errors.salary = "Salary must be a positive number.";
 	}
+	
+	console.log(values.superAnnuation);
 	//Validate the super field
 	if(!values.superAnnuation){
 		errors.superAnnuation = "Please enter percentage of Superannuation"
-	} else if (isNaN(values.salary)){
-		errors.salary = "Super amount must be a number.";
-	// } else if (!Number.isInteger(values.superAnnuation)) {
-	// 	errors.superAnnuation = "Please enter whole number only."
+	} else if (isNaN(values.superAnnuation)){
+		errors.superAnnuation = "Super amount must be a number.";
+	} else if (!(values.superAnnuation % 1 === 0)) {
+		errors.superAnnuation = "Please enter whole number only.";
 	} else if (values.superAnnuation > 50 || values.superAnnuation < 0) {
 		errors.superAnnuation = "Super must be between 0% and 50%."
 	}

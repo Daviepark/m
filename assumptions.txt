@@ -4,6 +4,8 @@ I have assumed that the superannuation % must be a whole number.
 
 I have assumed styling is not the main objective of this test.
 
+I have assumed the program should run on the 12/13 tax amounts.
+
 
 TO RUN -
 1. npm install
